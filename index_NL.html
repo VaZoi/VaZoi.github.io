@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Galgje Spel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #spel-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #galgje {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #woord-weergave {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #woord-lengte {
+            font-size: 16px;
+            color: #888;
+        }
+
+        #pogingen {
+            font-size: 16px;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        #geraden-letters {
+            font-size: 16px;
+            color: #555;
+        }
+
+        #galgje-afbeelding {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 50px;
+        }
+
+        #spel-afgelopen {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #d9534f;
+            font-weight: bold;
+            transition: opacity 0.5s;
+        }
+
+        #gok-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        #gok-knop {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #gok-knop:hover {
+            background-color: #31b0d5;
+        }
+
+        #gok-input:focus {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .show {
+            animation: fadeIn 1s ease-in-out;
+            margin-bottom: 10px;
+        }
+
+        #herstart-knop {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #herstart-knop:hover {
+            background-color: #31b0d5;
+        }
+
+        #hint-weergave {
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index_NL.html">NL</a>
+    <div id="spel-container">
+        <h1>Galgje Spel</h1>
+        <div id="galgje">Fruit of Groente: <span id="woord-weergave"></span></div>
+        <div id="woord-lengte">Woordlengte: <span id="woord-lengte-weergave"></span></div>
+        <div id="pogingen">Pogingen Resterend: <span id="pogingen-resterend">6</span></div>
+        <div id="geraden-letters">Geraden Letters: <span id="geraden-letters-weergave"></span></div>
+        <pre id="galgje-afbeelding"></pre>
+        <div id="spel-afgelopen" class="show"></div>
+        <div id="hint-weergave"></div>
+        <input type="text" id="gok-input" placeholder="Raad een letter">
+        <button id="gok-knop">Raad</button>
+        <button id="herstart-knop">Opnieuw spelen</button>
+    </div>
+
+    <script>
+        const woordHints = {
+            "appel": "Het is een populaire vrucht met een zoete en knapperige smaak.",
+            "banaan": "Deze vrucht is geel en wordt vaak gebruikt in smoothies en desserts.",
+            "kers": "Een kleine, rode vrucht vaak gebruikt in taarten en als topping voor ijs.",
+            "dadels": "Een zoete vrucht die in verschillende variëteiten voorkomt, vaak gebruikt in desserts.",
+            "ouderling": "Dit woord kan verwijzen naar een oudere persoon of een soort boom met bessen.",
+            "vijg": "Een vrucht met een unieke vorm en een zoete, taaie binnenkant.",
+            "druif": "Kleine, sappige vruchten vaak gebruikt om wijn en snacks te maken.",
+            "honing": "Een zoete, plakkerige substantie geproduceerd door bijen.",
+            "klimop": "Een klimplant vaak gebruikt voor decoratieve doeleinden op gebouwen.",
+            "jeneverbes": "Een soort naaldboom bekend om zijn bessen die worden gebruikt om gin op smaak te brengen.",
+            "kiwi": "Een kleine, groene vrucht met een harige bruine schil.",
+            "citroen": "Een zure citrusvrucht die wordt gebruikt in verschillende culinaire gerechten.",
+            "mango": "Een tropische vrucht met zoet en sappig vruchtvlees.",
+            "nectarine": "Vergelijkbaar met een perzik, maar met een gladde schil en zoet vruchtvlees.",
+            "olijf": "Een kleine, oliehoudende vrucht vaak gebruikt in koken en salades.",
+            "peer": "Een zoete vrucht met een kenmerkende vorm, vaak vers genoten of in desserts.",
+            "kweepeer": "Een geurige vrucht die meestal te hard en zuur is om rauw te eten.",
+            "framboos": "Een kleine, rode vrucht bekend om zijn zoetzure smaak.",
+            "aardbei": "Een populaire rode vrucht vaak gebruikt in desserts en conserven.",
+            "mandarijn": "Een kleine, gemakkelijk te pellen citrusvrucht.",
+            "watermeloen": "Een grote, sappige vrucht vaak genoten in de zomer.",
+            "abrikoos": "Een zoete, oranje vrucht met een gladde schil.",
+            "bosbes": "Kleine, donkerblauwe vruchten bekend om hun antioxidante eigenschappen.",
+            "veenbes": "Kleine, rode en zure vruchten vaak gebruikt in sauzen en sappen.",
+            "dragonfruit": "Een visueel opvallende vrucht met roze of gele schil en wit vruchtvlees met zwarte zaden.",
+            "vlierbes": "Kleine, donkere bessen van de vlierboom, vaak gebruikt in jams en siropen.",
+            "guave": "Een tropische vrucht met een unieke smaak en roze of groen vruchtvlees.",
+            "veenbes": "Kleine, donkere bessen vaak gebruikt in taarten en jams, vergelijkbaar met bosbessen.",
+            "jackfruit": "Een grote tropische vrucht met een zetmeelachtige textuur vaak gebruikt als vleesvervanger.",
+            "kumquat": "Kleine citrusvruchten die in hun geheel worden gegeten, inclusief de schil.",
+            "lychee": "Een tropische vrucht met een ruwe, rode schil en zoet, doorschijnend vruchtvlees.",
+            "mandarijn": "Een kleine, gemakkelijk te pellen citrusvrucht.",
+            "papaja": "Een tropische vrucht met oranje vruchtvlees en zwarte zaden.",
+            "guave": "Een typfout, je bedoelde misschien guave, een tropische vrucht met een unieke smaak.",
+            "rode bes": "Kleine, zure bessen vaak gebruikt in desserts en jams.",
+            "soursop": "Een tropische vrucht met een stekelige groene buitenkant en romig wit vruchtvlees.",
+            "tomaat": "Een rode of gele vrucht vaak gebruikt als groente in de keuken.",
+            "ugli": "Een citrusvrucht met een gerimpeld uiterlijk, ook bekend als ugli-fruit.",
+            "vanille": "Een smaakstof afgeleid van de orchideeboon, vaak gebruikt in bakken.",
+            "walnoot": "Een soort noot met een harde schil en een gerimpeld, eetbaar binnenste.",
+            "xigua": "Een term die in sommige regio's wordt gebruikt voor watermeloen.",
+            "zoete aardappel": "Een zetmeelrijke wortelgroente die op verschillende manieren kan worden bereid.",
+            "courgette": "Een soort zomerpompoen vaak gebruikt in hartige gerechten.",
+            "broccoli": "Een groene groente met een bloemige kop vaak gebruikt in salades en roerbakgerechten.",
+            "kool": "Een bladgroente die wordt gebruikt in verschillende culinaire gerechten.",
+            "paardenbloem": "Een soort eetbare onkruid met bittere bladeren vaak gebruikt in salades.",
+            "aubergine": "Een paarse of zwarte groente bekend om zijn vlezige textuur.",
+            "venkel": "Een geurig kruid met een bolvormige basis vaak gebruikt in de mediterrane keuken.",
+            "knoflook": "Een scherpe knol vaak gebruikt als smaakmaker in de keuken.",
+            "hazelnoot": "Een soort noot vaak gebruikt in bakken en als een spread zoals Nutella.",
+            "kiwivrucht": "Een kleine, groene vrucht met een harige bruine schil.",
+            "limoen": "Een kleine, groene citrusvrucht bekend om zijn zure smaak.",
+            "nectar": "Een zoete vloeistof die vaak wordt verzameld door bijen om honing te maken.",
+            "ui": "Een scherpe groente vaak gebruikt als basis voor veel hartige gerechten.",
+            "perzik": "Een zoete, sappige vrucht met een harige schil.",
+            "ananas": "Een tropische vrucht met een stekelige, ruwe buitenkant en zoet, geel vruchtvlees.",
+            "pruim": "Een zoete en sappige vrucht met een gladde schil.",
+            "quinoa": "Een voedzaam graan vaak gebruikt als vervanger voor rijst.",
+            "radijs": "Een knapperige, scherpe wortelgroente vaak gebruikt in salades en garneringen.",
+            "carambola": "Een tropische vrucht met een unieke stervormige dwarsdoorsnede bij het snijden.",
+            "tamarinde": "Een zure vrucht gebruikt in verschillende culinaire toepassingen.",
+            "uglifruit": "Een citrusvrucht met een gerimpeld uiterlijk, ook bekend als ugli-fruit.",
+            "waterkers": "Een bladgroente met een pittige smaak.",
+            "geelvintonijn": "Een soort tonijn bekend om zijn gele vin en heerlijke smaak.",
+            "zinfandeldruiven": "Druiven die vaak worden gebruikt om Zinfandel-wijn te maken.",
+            "eikelpompoen": "Een soort winterpompoen met een kenmerkende eikelvormige vorm.",
+            "butternutpompoen": "Een zoete en nootachtig smakende winterpompoen.",
+            "cantaloupe": "Een zoete, oranje vrucht vaak genoten in fruitsalades.",
+            "daikon": "Een lange, witte radijs vaak gebruikt in de Aziatische keuken.",
+            "andijvie": "Een bladgroente met een licht bittere smaak vaak gebruikt in salades.",
+            "tuinbonen": "Grote, platte bonen vaak gebruikt in mediterrane gerechten.",
+            "guanabana": "Een tropische vrucht met een stekelige groene buitenkant en romig wit vruchtvlees.",
+            "honingmeloen": "Een zoete en verfrissende meloen met lichtgroen vruchtvlees.",
+            "jalapeño": "Een type chilipeper met een medium mate van pittigheid.",
+            "boerenkool": "Een bladgroente bekend om zijn voedingswaarde.",
+            "prei": "Een mild smakende groente vaak gebruikt in soepen en stoofschotels.",
+            "mungbonen": "Kleine, groene bonen vaak gebruikt in de Aziatische keuken.",
+            "Chinese kool": "Een soort Chinese kool met gekreukelde bladeren.",
+            "okra": "Een groene, peulachtige groente vaak gebruikt in de Zuidelijke keuken.",
+            "granaatappel": "Een vrucht met sappige, rode zaden vaak gebruikt in salades en sappen.",
+            "kwarteleieren": "Kleine eieren van kwartelvogels, vaak gebruikt in gastronomische gerechten.",
+            "rabarber": "Een zure groente vaak gebruikt in desserts zoals taarten en crisps.",
+            "spinazie": "Een bladgroente bekend om zijn hoog ijzergehalte.",
+            "taro": "Een zetmeelrijke wortelgroente gebruikt in verschillende keukens.",
+            "uglifruit": "Een citrusvrucht met een gerimpeld uiterlijk, ook bekend als ugli-fruit.",
+            "wodka": "Een heldere alcoholische drank vaak gebruikt in cocktails.",
+            "waterkers": "Een bladgroente met een pittige smaak.",
+            "ximenia": "Een vrucht dragende boom met kleine, gele vruchten.",
+            "zoete aardappelen": "Zetmeelrijke wortelgroenten vaak gebruikt in hartige en zoete gerechten.",
+            "courgette": "Een soort zomerpompoen vaak gebruikt in hartige gerechten."
+        };
+
+
+        const woorden = Object.keys(woordHints);
+        let teRadenWoord = kiesWillekeurigWoord(woorden);
+        let resterendePogingen = 6;
+        const geradenLetters = [];
+
+        const woordWeergave = document.getElementById("woord-weergave");
+        const woordLengteWeergave = document.getElementById("woord-lengte-weergave");
+        const pogingenWeergave = document.getElementById("pogingen-resterend");
+        const geradenLettersWeergave = document.getElementById("geraden-letters-weergave");
+        const galgjeAfbeelding = document.getElementById("galgje-afbeelding");
+        const spelAfgelopenBericht = document.getElementById("spel-afgelopen");
+        const gokInput = document.getElementById("gok-input");
+        const gokKnop = document.getElementById("gok-knop");
+        const hintWeergave = document.getElementById("hint-weergave");
+
+        woordWeergave.textContent = toonWoord(teRadenWoord, geradenLetters);
+        woordLengteWeergave.textContent = teRadenWoord.length;
+        pogingenWeergave.textContent = resterendePogingen;
+
+        hintWeergave.textContent = `Hint: ${woordHints[teRadenWoord]}`;
+
+        gokKnop.addEventListener("click", () => {
+            const gok = gokInput.value.toLowerCase();
+            if (gok.length !== 1 || !gok.match(/[a-z]/)) {
+                alert("Voer een geldige enkele letter in.");
+                return;
+            }
+
+            if (geradenLetters.includes(gok)) {
+                alert("Je hebt die letter al geraden.");
+                return;
+            }
+
+            geradenLetters.push(gok);
+            geradenLettersWeergave.textContent = geradenLetters.join(", ");
+            if (teRadenWoord.indexOf(gok) === -1) {
+                resterendePogingen--;
+                pogingenWeergave.textContent = resterendePogingen;
+                updateGalgjeAfbeelding(6 - resterendePogingen);
+            }
+
+            const woordWeergaveTekst = toonWoord(teRadenWoord, geradenLetters);
+            woordWeergave.textContent = woordWeergaveTekst;
+
+            if (woordWeergaveTekst === teRadenWoord) {
+                spelAfgelopenBericht.textContent = "Gefeliciteerd! Je hebt het woord geraden.";
+                beëindigSpel();
+            } else if (resterendePogingen === 0) {
+                spelAfgelopenBericht.textContent = "Sorry, je bent door je pogingen heen. Het woord was: " + teRadenWoord;
+                beëindigSpel();
+            }
+
+            gokInput.value = "";
+        });
+
+        function kiesWillekeurigWoord(woordArray) {
+            return woordArray[Math.floor(Math.random() * woordArray.length)];
+        }
+
+        function toonWoord(woord, geradenLetters) {
+            let weergave = "";
+            for (let letter of woord) {
+                weergave += geradenLetters.includes(letter) ? letter : " _ ";
+            }
+            return weergave;
+        }
+
+        function updateGalgjeAfbeelding(incorrectePogingen) {
+            const galgjeAfbeeldingen = [
+                "  _________",
+                "  |",
+                `  ${incorrectePogingen < 6 ? "O" : " "}`,
+                `  ${incorrectePogingen < 5 ? "/" : " "}${incorrectePogingen < 4 ? "|" : " "}${incorrectePogingen < 3 ? "\\" : " "}`,
+                `  ${incorrectePogingen < 2 ? "/" : " "} ${incorrectePogingen < 1 ? "\\" : " "}`,
+            ];
+            galgjeAfbeelding.textContent = galgjeAfbeeldingen.join('\n');
+        }
+
+        const herstartKnop = document.getElementById("herstart-knop");
+
+        herstartKnop.addEventListener("click", () => {
+            teRadenWoord = kiesWillekeurigWoord(woorden);
+            resterendePogingen = 6;
+            geradenLetters.length = 0;
+
+            woordWeergave.textContent = toonWoord(teRadenWoord, geradenLetters);
+            woordLengteWeergave.textContent = teRadenWoord.length;
+            pogingenWeergave.textContent = resterendePogingen;
+            geradenLettersWeergave.textContent = "";
+            galgjeAfbeelding.textContent = "";
+            spelAfgelopenBericht.textContent = "";
+            hintWeergave.textContent = `Hint: ${woordHints[teRadenWoord]}`;
+
+            gokInput.removeAttribute("disabled");
+            gokKnop.removeAttribute("disabled");
+            herstartKnop.style.display = "none";
+            gokInput.value = "";
+        });
+
+        function beëindigSpel() {
+            gokInput.setAttribute("disabled", true);
+            gokKnop.setAttribute("disabled", true);
+            herstartKnop.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
