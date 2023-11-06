@@ -239,5 +239,6 @@ p {
 @media screen and (max-width: 600px) {
   .description {
     width: 100%;
+    left: 10%;
   }
 }
