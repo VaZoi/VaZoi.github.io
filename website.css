@@ -236,3 +236,8 @@ p {
   margin: 10px 0;
   color: #666;
 }
+@media screen and (max-width: 600px) {
+  .description {
+    width: 100%;
+  }
+}
