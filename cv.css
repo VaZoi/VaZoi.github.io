@@ -68,6 +68,7 @@ body {
     transform: rotateY(0deg);
 }
 h3 {
-    margin-top: 400px;
+    margin-top: 300px;
     color: #0579e6;
+    text-align: center;
 }

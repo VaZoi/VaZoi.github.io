@@ -191,6 +191,6 @@ footer a {
 
     .right,
     .left {
-        margin-bottom: 0;
+        top: 80%;
     }
 }
