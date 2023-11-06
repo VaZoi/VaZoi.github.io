@@ -11,25 +11,49 @@
             text-align: center;
         }
 
-        h1 {
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
+h1 {
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-        #spel-container {
-            width: 100%;
-            height: 1000px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-        }
+#spel-container {
+    width: 90%;
+    height: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
 
-        #galgje {
-            font-size: 24px;
-            font-weight: bold;
-        }
+#galgje {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px; 
+    }
+
+    #spel-container {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    #galgje {
+        font-size: 20px;
+    }
+
+    #woord-weergave {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+}
+
 
         #woord-weergave {
             font-size: 28px;
@@ -149,6 +173,8 @@
         footer a {
             color: #0579e6;
         }
+
+        
     </style>
 </head>
 
