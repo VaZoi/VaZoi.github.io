@@ -27,6 +27,22 @@ body {
     color: #0579e6;
 }
 
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav a {
+        margin: 10px 0;
+        font-size: 120%;
+    }
+
+    .nav>img {
+        width: 60px;
+        height: 64px;
+    }
+}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;

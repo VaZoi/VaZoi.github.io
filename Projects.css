@@ -27,6 +27,22 @@ body {
     color: #0579e6;
 }
 
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav a {
+        margin: 10px 0;
+        font-size: 120%;
+    }
+
+    .nav>img {
+        width: 60px;
+        height: 64px;
+    }
+}
 .project-section {
     padding: 20px;
     border-radius: 5px;

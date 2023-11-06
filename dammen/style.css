@@ -114,6 +114,11 @@ html {
         height: 32px;
     }
 }
+.left,
+.right {
+    width: 10%;
+    height: 400px;
+}
 
 header {
     text-align: center;
