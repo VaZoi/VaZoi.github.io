@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Projects</title>
+    <link rel="icon" href="icon.jpeg">
+    <link rel="stylesheet" href="Projects.css">
+</head>
+
+<body>
+    <div class="nav">
+        <img src="icon.jpeg" alt="Logo" id="Logo">
+        <a href="index.html">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="skills.html">Skills</a>
+        <a href="Games.html">Games</a>
+        <a class="active" href="Projects.html">Projects</a>
+        <a href="certificates.html">Certificates</a>
+    </div>
+
+
+    <section class="project-section">
+        <h2>My Projects</h2>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for projects...">
+            <button id="search-button" onclick="searchProjects()">Search</button>
+        </div>
+
+        <div class="project">
+            <h3>2D Runner Game</h3>
+            <p>A 2D runner game where you are a plane and you need to avoid the other planes.</p>
+            <p>Made with Unity and C#</p>
+        </div>
+
+        <div class="project">
+            <h3>3D Runner Game</h3>
+            <p>"Boneyard Chase: Mummy's Quest for Humanity" is an immersive endless runner game in which players take on
+                the role of an ancient Egyptian mummy determined to become human once again. The mummy is chased by
+                hordes of skeletons trying to stop him and keep him in his eternal undead state.</p>
+
+            <p>In this game, you run through various challenging environments, ranging from dilapidated graveyards and
+                ancient temples to deserted deserts. The player must dodge obstacles such as tombstones, traps, and
+                hostile skeletons while collecting power-ups to accelerate their transformation into humanity.</p>
+
+            <p>The story unfolds as you progress, and players are drawn into the mystery of the mummy's curse and his
+                quest for redemption. The game combines thrilling action, strategic decisions, and an immersive story to
+                keep players engaged for hours as they try to help the mummy regain his humanity.
+            <p>
+
+            <p>"Boneyard Chase: Mummy's Quest for Humanity" offers challenging gameplay, a captivating story, and
+                stunning graphics to immerse players in the world of ancient Egypt and the supernatural as they race to
+                help the mummy achieve his goal.</p>
+            <p>Made using Unity, C# and Blender.</p>
+        </div>
+
+        <div class="project">
+            <h3>Software Website</h3>
+            <p>A school project. The website is about different sort softwares you could buy and order And a admin Page
+                where the admin could alter, see and add products same with registered users. the admin can also see how
+                many orders
+                there are and how much money is ever earned</p>
+            <p>Made with php, sql, html, css and JavaScript</p>
+        </div>
+
+        <div class="project">
+            <h3>JavaScript Hangman</h3>
+            <p>The game Hangman with Fruit and vegetables</p>
+            <p>Using HTML, CSS, JavaScript</p>
+        </div>
+
+        <div class="project">
+            <h3>JavaScript Checkers Game</h3>
+            <p>The Checkers game that is playable in a HTML page. </p>
+            <p>The game is translated from the C# Checkers Game</p>
+            <p>Using HTML, CSS and JavaScript</p>
+        </div>
+
+        <div class="project">
+            <h3>Camping Website</h3>
+            <p>A School Project where the website is about a Camping where you can make reservations.</p>
+            <p>Made Using HTML, PHP, CSS and JavaSript</p>
+        </div>
+        </div>
+
+        <!-- Add more project sections as needed -->
+    </section>
+
+    <script>
+        function searchProjects() {
+            var input = document.getElementById("search-input").value.toLowerCase();
+            var projects = document.getElementsByClassName("project");
+
+            for (var i = 0; i < projects.length; i++) {
+                var projectTitle = projects[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+                if (projectTitle.includes(input)) {
+                    projects[i].style.display = "block";
+                } else {
+                    projects[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+body {
+    background-color: black;
+    font-family: Helvetica, sans-serif;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+    width: 100%;
+    align-items: center;
+}
+
+.nav a {
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 150%;
+}
+
+.nav>img {
+    width: 85px;
+    height: 90px;
+}
+
+.nav .active {
+    color: #0579e6;
+}
+
+.certificates-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.certificates-container h2 {
+    color: #0579e6;
+    text-align: center;
+}
+
+.certificate {
+    background-color: black;
+    border-bottom: 2px solid #0579e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    animation: fadeIn 1s ease;
+    color: #0579e6;
+}
+
+.certificate p {
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.pdf-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdf-popup iframe {
+    width: 60%;
+    height: 90%;
+    border: none;
+}
+
+.certificate:active .pdf-popup {
+    display: flex;
+}
+
+body h2,
+.p1 {
+    color: #0579e6;
+    text-align: center;
+}
+
+body h2 {
+    font-size: xx-large;
+}

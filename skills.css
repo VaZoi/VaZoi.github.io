@@ -1,0 +1,131 @@
+body {
+    background-color: black;
+    font-family: Helvetica, sans-serif;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+    width: 100%;
+    align-items: center;
+}
+
+a {
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 150%;
+}
+
+.nav>img {
+    width: 85px;
+    height: 90px;
+}
+
+.active {
+    color: #0579e6;
+}
+
+.skills-container {
+    padding: 20px;
+}
+
+.skills-container h1 {
+    color: #0579e6;
+    text-align: center;
+}
+
+p,
+h1 {
+    color: #fff;
+    text-align: center;
+}
+
+.skill {
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 5px #fff;
+    text-align: left;
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+
+.skill:hover {
+    transform: translateX(10px);
+}
+
+* {
+    box-sizing: border-box
+}
+
+.container {
+    width: 100%;
+    background-color: #ddd;
+}
+
+.skills {
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    border-radius: 10px;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-name: slideInLeft;
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.html {
+    width: 90%;
+    background-color: #04AA6D;
+}
+
+.css {
+    width: 75%;
+    background-color: #2196F3;
+}
+
+.js {
+    width: 25%;
+    background-color: #f44336;
+}
+
+.php {
+    width: 30%;
+    background-color: #808080;
+}
+
+.csharp {
+    width: 30%;
+    background-color: #00ff22;
+}
+
+.c {
+    width: 10%;
+    background-color: #fc00da;
+}
+
+.sql {
+    width: 80%;
+    background-color: #eeff00;
+}
+
+.python {
+    width: 15%;
+    background-color: purple;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hangman Game</title>
+    <link rel="icon" type="icon" href="hangman.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #game-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #hangman {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #word-display {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #word-length {
+            font-size: 16px;
+            color: #888;
+        }
+
+        #attempts {
+            font-size: 16px;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        #guessed-letters {
+            font-size: 16px;
+            color: #555;
+        }
+
+        #hangman-image {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 50px;
+        }
+
+        #game-over {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #d9534f;
+            font-weight: bold;
+            transition: opacity 0.5s;
+        }
+
+        #guess-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        #guess-button {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #guess-button:hover {
+            background-color: #31b0d5;
+        }
+
+        #guess-input:focus {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .show {
+            animation: fadeIn 1s ease-in-out;
+            margin-bottom: 10px;
+        }
+
+        #replay-button {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: none;
+        }
+
+        #replay-button:hover {
+            background-color: #31b0d5;
+        }
+
+        #hint-display {
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+
+        body a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        footer {
+            position: absolute;
+            text-align: center;
+            background-color: black;
+            bottom: 0;
+            right: 0;
+            font-size: xx-large;
+            padding: 15px;
+            left: 0;
+        }
+
+        footer a {
+            color: #0579e6;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="Galgje.html">NL</a>
+    <div id="game-container">
+        <h1>Hangman Game</h1>
+        <div id="hangman">Fruit or Vegetable: <span id="word-display"></span></div>
+        <div id="word-length">Word Length: <span id="word-length-display"></span></div>
+        <div id="attempts">Attempts Remaining: <span id="attempts-remaining">6</span></div>
+        <div id="guessed-letters">Guessed Letters: <span id="guessed-letters-display"></span></div>
+        <pre id="hangman-image"></pre>
+        <div id="game-over" class="show"></div>
+        <div id="hint-display"></div>
+        <input type="text" id="guess-input" placeholder="Guess a letter">
+        <button id="guess-button">Guess</button>
+        <button id="replay-button">Replay</button>
+    </div>
+
+    <footer>
+        <a href="../Games.html">Back to Games</a>
+    </footer>
+
+    <script>
+        const wordHints = {
+            "apple": "It's a popular fruit with a sweet and crisp taste.",
+            "banana": "This fruit is yellow and often used in smoothies and desserts.",
+            "cherry": "A small, red fruit often used in pies and as a topping for ice cream.",
+            "date": "A sweet fruit that comes in various varieties, often used in desserts.",
+            "elder": "This word can refer to an older person or a type of tree with berries.",
+            "fig": "A fruit with a unique shape and a sweet, chewy interior.",
+            "grape": "Small, juicy fruits often used to make wine and snacks.",
+            "honey": "A sweet, sticky substance produced by bees.",
+            "ivy": "A climbing plant often used for decorative purposes on buildings.",
+            "juniper": "A type of coniferous tree known for its berries used in flavoring gin.",
+            "kiwi": "A small, green fruit with a fuzzy brown skin.",
+            "lemon": "A sour citrus fruit used in a variety of culinary dishes.",
+            "mango": "A tropical fruit with a sweet and juicy flesh.",
+            "nectarine": "Similar to a peach, but with smooth skin and sweet flesh.",
+            "olive": "A small, oil-rich fruit often used in cooking and salads.",
+            "pear": "A sweet fruit with a distinctive shape, often enjoyed fresh or in desserts.",
+            "quince": "A fragrant fruit that is usually too hard and sour to eat raw.",
+            "raspberry": "A small, red fruit known for its sweet-tart flavor.",
+            "strawberry": "A popular red fruit often used in desserts and preserves.",
+            "tangerine": "A small, citrus fruit similar to an orange but easier to peel.",
+            "watermelon": "A large, juicy fruit often enjoyed in the summertime.",
+            "apricot": "A sweet, orange fruit with a smooth skin.",
+            "blueberry": "Small, dark-blue fruits known for their antioxidant properties.",
+            "cranberry": "Small, red, and tart fruits often used in sauces and juices.",
+            "dragonfruit": "A visually striking fruit with pink or yellow skin and white flesh with black seeds.",
+            "elderberry": "Small, dark berries from the elder tree, often used in jams and syrups.",
+            "guava": "A tropical fruit with a unique flavor and pink or green flesh.",
+            "huckleberry": "Small, dark berries similar to blueberries, often used in pies and jams.",
+            "jackfruit": "A large tropical fruit with a starchy texture often used as a meat substitute.",
+            "kumquat": "Tiny citrus fruits that are eaten whole, including the peel.",
+            "lychee": "A tropical fruit with a rough, red skin and sweet, translucent flesh.",
+            "mandarin": "A small, easy-to-peel citrus fruit.",
+            "papaya": "A tropical fruit with orange flesh and black seeds.",
+            "quava": "A typo, you may have meant guava, a tropical fruit with a unique flavor.",
+            "redcurrant": "Small, tart berries often used in desserts and jams.",
+            "soursop": "A tropical fruit with a spiky green exterior and creamy white flesh.",
+            "tomato": "A red or yellow fruit often used as a vegetable in cooking.",
+            "ugli": "A citrus fruit with a wrinkled appearance, also known as ugli fruit.",
+            "vanilla": "A flavoring derived from the orchid bean, often used in baking.",
+            "walnut": "A type of nut with a hard shell and a wrinkled, edible interior.",
+            "xigua": "A term used for watermelon in some regions.",
+            "yam": "A starchy root vegetable that can be cooked in various ways.",
+            "zucchini": "A type of summer squash often used in savory dishes.",
+            "broccoli": "A green vegetable with a flowering head often used in salads and stir-fries.",
+            "cabbage": "A leafy green vegetable used in various culinary dishes.",
+            "dandelion": "A type of edible weed with bitter leaves often used in salads.",
+            "eggplant": "A purple or black vegetable known for its meaty texture.",
+            "fennel": "A fragrant herb with a bulb-like base often used in Mediterranean cuisine.",
+            "garlic": "A pungent bulb often used as a flavoring in cooking.",
+            "hazelnut": "A type of nut often used in baking and as a spread like Nutella.",
+            "kiwifruit": "A small, green fruit with a fuzzy brown skin.",
+            "lime": "A small, green citrus fruit known for its tart flavor.",
+            "nectar": "A sweet liquid often collected by bees to make honey.",
+            "onion": "A pungent vegetable often used as a base for many savory dishes.",
+            "peach": "A sweet, juicy fruit with a fuzzy skin.",
+            "pineapple": "A tropical fruit with a spiky, rough exterior and sweet, yellow flesh.",
+            "plum": "A sweet and juicy fruit with a smooth skin.",
+            "quinoa": "A nutritious grain often used as a rice substitute.",
+            "radish": "A crunchy, pungent root vegetable often used in salads and garnishes.",
+            "starfruit": "A tropical fruit with a unique star-shaped cross-section when sliced.",
+            "tamarind": "A tangy fruit used in a variety of culinary applications.",
+            "uglifruit": "A citrus fruit with a wrinkled appearance, also known as ugli fruit.",
+            "watercress": "A leafy green vegetable with a peppery taste.",
+            "yellowfin tuna": "A type of tuna known for its yellow fin and delicious flavor.",
+            "zinfandel grapes": "Grapes often used to make Zinfandel wine.",
+            "acorn squash": "A type of winter squash with a distinctive acorn-like shape.",
+            "butternut squash": "A sweet and nutty-flavored winter squash.",
+            "cantaloupe": "A sweet, orange-fleshed melon often enjoyed in fruit salads.",
+            "daikon": "A long, white radish often used in Asian cuisine.",
+            "endive": "A leafy green vegetable with a slightly bitter taste often used in salads.",
+            "fava beans": "Large, flat beans often used in Mediterranean dishes.",
+            "guanabana": "A tropical fruit with a spiky green exterior and creamy white flesh.",
+            "honeydew melon": "A sweet and refreshing melon with pale green flesh.",
+            "jalapeno": "A type of chili pepper with a medium level of spiciness.",
+            "kale": "A leafy green vegetable known for its nutritional value.",
+            "leek": "A mild-flavored vegetable often used in soups and stews.",
+            "mung beans": "Small, green beans often used in Asian cooking.",
+            "napa cabbage": "A type of Chinese cabbage with crinkled leaves.",
+            "okra": "A green, pod-like vegetable often used in Southern cuisine.",
+            "pomegranate": "A fruit with juicy, red seeds often used in salads and juices.",
+            "quail eggs": "Tiny eggs from quail birds, often used in gourmet cuisine.",
+            "rhubarb": "A tart vegetable often used in desserts like pies and crisps.",
+            "spinach": "A leafy green vegetable known for its high iron content.",
+            "taro": "A starchy root vegetable used in various cuisines.",
+            "ugli fruit": "A citrus fruit with a wrinkled appearance, also known as ugli fruit.",
+            "vodka": "A clear alcoholic spirit often used in cocktails.",
+            "watercress": "A leafy green vegetable with a peppery taste.",
+            "ximenia": "A fruit-bearing tree with small, yellow fruits.",
+            "yams": "Starchy root vegetables often used in savory and sweet dishes.",
+            "zucchini": "A type of summer squash often used in savory dishes."
+        };
+
+        const words = Object.keys(wordHints);
+        let wordToGuess = pickRandomWord(words);
+        let attemptsRemaining = 6;
+        const guessedLetters = [];
+
+        const wordDisplay = document.getElementById("word-display");
+        const wordLengthDisplay = document.getElementById("word-length-display");
+        const attemptsDisplay = document.getElementById("attempts-remaining");
+        const guessedLettersDisplay = document.getElementById("guessed-letters-display");
+        const hangmanImage = document.getElementById("hangman-image");
+        const gameOverMessage = document.getElementById("game-over");
+        const guessInput = document.getElementById("guess-input");
+        const guessButton = document.getElementById("guess-button");
+        const hintDisplay = document.getElementById("hint-display");
+
+        wordDisplay.textContent = displayWord(wordToGuess, guessedLetters);
+        wordLengthDisplay.textContent = wordToGuess.length;
+        attemptsDisplay.textContent = attemptsRemaining;
+
+        hintDisplay.textContent = `Hint: ${wordHints[wordToGuess]}`;
+
+        guessButton.addEventListener("click", () => {
+            const guess = guessInput.value.toLowerCase();
+            if (guess.length !== 1 || !guess.match(/[a-z]/)) {
+                alert("Please enter a valid single letter.");
+                return;
+            }
+
+            if (guessedLetters.includes(guess)) {
+                alert("You already guessed that letter.");
+                return;
+            }
+
+            guessedLetters.push(guess);
+            guessedLettersDisplay.textContent = guessedLetters.join(", ");
+            if (wordToGuess.indexOf(guess) === -1) {
+                attemptsRemaining--;
+                attemptsDisplay.textContent = attemptsRemaining;
+                updateHangmanImage(6 - attemptsRemaining);
+            }
+
+            const wordDisplayText = displayWord(wordToGuess, guessedLetters);
+            wordDisplay.textContent = wordDisplayText;
+
+            if (wordDisplayText === wordToGuess) {
+                gameOverMessage.textContent = "Congratulations! You guessed the word.";
+                endGame();
+            } else if (attemptsRemaining === 0) {
+                gameOverMessage.textContent = "Sorry, you ran out of attempts. The word was: " + wordToGuess;
+                endGame();
+            }
+
+            guessInput.value = "";
+        });
+
+        function pickRandomWord(wordArray) {
+            return wordArray[Math.floor(Math.random() * wordArray.length)];
+        }
+
+        function displayWord(word, guessedLetters) {
+            let display = "";
+            for (let letter of word) {
+                display += guessedLetters.includes(letter) ? letter : " _ ";
+            }
+            return display;
+        }
+
+        function updateHangmanImage(incorrectGuesses) {
+            const hangmanImages = [
+                "  _________",
+                "  |",
+                `  ${incorrectGuesses < 6 ? "O" : " "}`,
+                `  ${incorrectGuesses < 5 ? "/" : " "}${incorrectGuesses < 4 ? "|" : " "}${incorrectGuesses < 3 ? "\\" : " "}`,
+                `  ${incorrectGuesses < 2 ? "/" : " "} ${incorrectGuesses < 1 ? "\\" : " "}`,
+            ];
+            hangmanImage.textContent = hangmanImages.join('\n');
+        }
+
+        const replayButton = document.getElementById("replay-button");
+
+        replayButton.addEventListener("click", () => {
+            wordToGuess = pickRandomWord(words);
+            attemptsRemaining = 6;
+            guessedLetters.length = 0;
+
+            wordDisplay.textContent = displayWord(wordToGuess, guessedLetters);
+            wordLengthDisplay.textContent = wordToGuess.length;
+            attemptsDisplay.textContent = attemptsRemaining;
+            guessedLettersDisplay.textContent = "";
+            hangmanImage.textContent = "";
+            gameOverMessage.textContent = "";
+            hintDisplay.textContent = `Hint: ${wordHints[wordToGuess]}`;
+
+            guessInput.removeAttribute("disabled");
+            guessButton.removeAttribute("disabled");
+            replayButton.style.display = "none";
+            guessInput.value = "";
+        });
+
+        function endGame() {
+            guessInput.setAttribute("disabled", true);
+            guessButton.setAttribute("disabled", true);
+            replayButton.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>

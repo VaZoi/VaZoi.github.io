@@ -129,15 +129,31 @@
             margin: 5px;
             margin-bottom: 10px;
         }
+
         body a {
             text-decoration: none;
             color: blue;
+        }
+
+        footer {
+            position: absolute;
+            text-align: center;
+            background-color: black;
+            bottom: 0;
+            right: 0;
+            font-size: xx-large;
+            padding: 15px;
+            left: 0;
+        }
+
+        footer a {
+            color: #0579e6;
         }
     </style>
 </head>
 
 <body>
-    <a href="index.html">EN</a>
+    <a href="hangman.html">EN</a>
     <div id="spel-container">
         <h1>Galgje Spel</h1>
         <div id="galgje">Fruit of Groente: <span id="woord-weergave"></span></div>
@@ -151,6 +167,10 @@
         <button id="gok-knop">Raad</button>
         <button id="herstart-knop">Opnieuw spelen</button>
     </div>
+
+    <footer>
+        <a href="../Games.html">Back to Games</a>
+    </footer>
 
     <script>
         const woordHints = {

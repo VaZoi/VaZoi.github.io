@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="icon" type="image/x-icon" href="Games.svg">
+    <link rel="stylesheet" href="Games.css">
+</head>
+
+<body>
+    <div class="nav">
+        <img src="icon.jpeg" alt="Logo" id="Logo">
+        <a href="index.html">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="skills.html">Skills</a>
+        <a class="active" href="Games.html">Games</a>
+        <a href="Projects.html">Projects</a>
+        <a href="certificates.html">Certificates</a>
+    </div>
+    <h1>VaZoi's Games</h1>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for Games...">
+        <button id="search-button" onclick="searchProjects()">Search</button>
+    </div>
+    <div class="Games">
+        <div class="card">
+            <img src="dammen/Checkers.png" alt="Checkers" style="width:100%">
+            <h1>Checkers Game</h1>
+            <p>Checkers Game build with Javascript, CSS and HTML.</p>
+            <p><a href="dammen/Checkers.html">Click here to go to game</a></p>
+        </div>
+        <div class="card">
+            <img src="Hangman/Hangman2.png" alt="Hangman" style="width:100%">
+            <h1>Hangman Game</h1>
+            <p>The hangman Game about Different Fruits and vegetables. Both in English and Dutch.</p>
+            <p><a href="Hangman/index.html">Click here to go to game</a></p>
+        </div>
+        <div class="card">
+            <img src="2D Runner/2D Runner.png" alt="2D Runner" style="width:100%">
+            <h1>2D Runner Game</h1>
+            <p>A 2D Runner Game where you play as a plane and you need to avoid the other planes. Made with Unity and C#
+            </p>
+            <p><a href="https://vazoi.itch.io/endless">Click here to go to game</a></p>
+        </div>
+    </div>
+    <script>
+        function searchProjects() {
+            var input = document.getElementById("search-input").value.toLowerCase();
+            var projects = document.getElementsByClassName("card");
+
+            for (var i = 0; i < projects.length; i++) {
+                var projectTitle = projects[i].getElementsByTagName("h1")[0].innerText.toLowerCase();
+                if (projectTitle.includes(input)) {
+                    projects[i].style.display = "block";
+                } else {
+                    projects[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

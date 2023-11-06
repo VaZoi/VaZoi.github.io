@@ -1,0 +1,91 @@
+body {
+    background-color: black;
+    font-family: Helvetica, sans-serif;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+    width: 100%;
+    align-items: center;
+}
+
+.nav a {
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 150%;
+}
+
+.nav>img {
+    width: 85px;
+    height: 90px;
+}
+
+.nav .active {
+    color: #0579e6;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+    font-family: arial;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.card p,
+a {
+    color: black;
+}
+
+.card a {
+    color: #0579e6;
+}
+
+.Games {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-container {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 250px;
+}
+
+#search-button {
+    background-color: #0579e6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: rgb(182, 7, 252);
+}
+
+.contact-section {
+    color: rgb(182, 7, 252);
+    bottom: 0;
+    width: 100%;
+}
+
+h1 {
+    color: #0579e6;
+    text-align: center;
+}

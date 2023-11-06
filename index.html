@@ -2,356 +2,98 @@
 <html>
 
 <head>
-    <title>Hangman Game</title>
-    <link rel="icon" type="icon" href="hangman.png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        #game-container {
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        #hangman {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        #word-display {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        #word-length {
-            font-size: 16px;
-            color: #888;
-        }
-
-        #attempts {
-            font-size: 16px;
-            margin: 20px 0;
-            color: #555;
-        }
-
-        #guessed-letters {
-            font-size: 16px;
-            color: #555;
-        }
-
-        #hangman-image {
-            font-family: monospace;
-            white-space: pre;
-            font-size: 50px;
-        }
-
-        #game-over {
-            font-size: 20px;
-            margin-top: 20px;
-            color: #d9534f;
-            font-weight: bold;
-            transition: opacity 0.5s;
-        }
-
-        #guess-input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            width: 300px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        #guess-button {
-            background-color: #5bc0de;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #guess-button:hover {
-            background-color: #31b0d5;
-        }
-
-        #guess-input:focus {
-            transform: scale(1.05);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .show {
-            animation: fadeIn 1s ease-in-out;
-            margin-bottom: 10px;
-        }
-
-        #replay-button {
-            background-color: #5bc0de;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-            display: none;
-        }
-
-        #replay-button:hover {
-            background-color: #31b0d5;
-        }
-
-        #hint-display {
-            margin: 5px;
-            margin-bottom: 10px;
-        }
-
-        body a {
-            text-decoration: none;
-            color: blue;
-        }
-    </style>
+  <title>Julie Kraanen</title>
+  <link rel="stylesheet" href="website.css">
+  <link rel="icon" href="icon.jpeg">
 </head>
 
 <body>
-    <a href="index_NL.html">NL</a>
-    <div id="game-container">
-        <h1>Hangman Game</h1>
-        <div id="hangman">Fruit or Vegetable: <span id="word-display"></span></div>
-        <div id="word-length">Word Length: <span id="word-length-display"></span></div>
-        <div id="attempts">Attempts Remaining: <span id="attempts-remaining">6</span></div>
-        <div id="guessed-letters">Guessed Letters: <span id="guessed-letters-display"></span></div>
-        <pre id="hangman-image"></pre>
-        <div id="game-over" class="show"></div>
-        <div id="hint-display"></div>
-        <input type="text" id="guess-input" placeholder="Guess a letter">
-        <button id="guess-button">Guess</button>
-        <button id="replay-button">Replay</button>
+  <div class="nav">
+    <img src="icon.jpeg" alt="Logo" id="Logo">
+    <a class="active" href="index.html">Home</a>
+    <a href="cv.html">CV</a>
+    <a href="skills.html">Skills</a>
+    <a href="Games.html">Games</a>
+    <a href="Projects.html">Projects</a>
+    <a href="certificates.html">Certificates</a>
+  </div>
+  <div class="all">
+    <div class="one">
+      <h1>Welcome!</h1>
+      <h2>I am a Software Developer</h2>
+      <p>My name is Julie Kraanen</p>
+      <p>My journey in software development began in 2022. I'm passionate about learning and growing in this field,
+        and I'm excited to explore the world of coding and technology.</p>
+      <div class="svg">
+        <a href="https://github.com/VaZoi">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#0579e6" class="bi bi-github"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/juliekraanen/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#0579e6" class="bi bi-linkedin"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+          </svg>
+        </a>
+      </div>
     </div>
 
-    <script>
-        const wordHints = {
-            "apple": "It's a popular fruit with a sweet and crisp taste.",
-            "banana": "This fruit is yellow and often used in smoothies and desserts.",
-            "cherry": "A small, red fruit often used in pies and as a topping for ice cream.",
-            "date": "A sweet fruit that comes in various varieties, often used in desserts.",
-            "elder": "This word can refer to an older person or a type of tree with berries.",
-            "fig": "A fruit with a unique shape and a sweet, chewy interior.",
-            "grape": "Small, juicy fruits often used to make wine and snacks.",
-            "honey": "A sweet, sticky substance produced by bees.",
-            "ivy": "A climbing plant often used for decorative purposes on buildings.",
-            "juniper": "A type of coniferous tree known for its berries used in flavoring gin.",
-            "kiwi": "A small, green fruit with a fuzzy brown skin.",
-            "lemon": "A sour citrus fruit used in a variety of culinary dishes.",
-            "mango": "A tropical fruit with a sweet and juicy flesh.",
-            "nectarine": "Similar to a peach, but with smooth skin and sweet flesh.",
-            "olive": "A small, oil-rich fruit often used in cooking and salads.",
-            "pear": "A sweet fruit with a distinctive shape, often enjoyed fresh or in desserts.",
-            "quince": "A fragrant fruit that is usually too hard and sour to eat raw.",
-            "raspberry": "A small, red fruit known for its sweet-tart flavor.",
-            "strawberry": "A popular red fruit often used in desserts and preserves.",
-            "tangerine": "A small, citrus fruit similar to an orange but easier to peel.",
-            "watermelon": "A large, juicy fruit often enjoyed in the summertime.",
-            "apricot": "A sweet, orange fruit with a smooth skin.",
-            "blueberry": "Small, dark-blue fruits known for their antioxidant properties.",
-            "cranberry": "Small, red, and tart fruits often used in sauces and juices.",
-            "dragonfruit": "A visually striking fruit with pink or yellow skin and white flesh with black seeds.",
-            "elderberry": "Small, dark berries from the elder tree, often used in jams and syrups.",
-            "guava": "A tropical fruit with a unique flavor and pink or green flesh.",
-            "huckleberry": "Small, dark berries similar to blueberries, often used in pies and jams.",
-            "jackfruit": "A large tropical fruit with a starchy texture often used as a meat substitute.",
-            "kumquat": "Tiny citrus fruits that are eaten whole, including the peel.",
-            "lychee": "A tropical fruit with a rough, red skin and sweet, translucent flesh.",
-            "mandarin": "A small, easy-to-peel citrus fruit.",
-            "papaya": "A tropical fruit with orange flesh and black seeds.",
-            "quava": "A typo, you may have meant guava, a tropical fruit with a unique flavor.",
-            "redcurrant": "Small, tart berries often used in desserts and jams.",
-            "soursop": "A tropical fruit with a spiky green exterior and creamy white flesh.",
-            "tomato": "A red or yellow fruit often used as a vegetable in cooking.",
-            "ugli": "A citrus fruit with a wrinkled appearance, also known as ugli fruit.",
-            "vanilla": "A flavoring derived from the orchid bean, often used in baking.",
-            "walnut": "A type of nut with a hard shell and a wrinkled, edible interior.",
-            "xigua": "A term used for watermelon in some regions.",
-            "yam": "A starchy root vegetable that can be cooked in various ways.",
-            "zucchini": "A type of summer squash often used in savory dishes.",
-            "broccoli": "A green vegetable with a flowering head often used in salads and stir-fries.",
-            "cabbage": "A leafy green vegetable used in various culinary dishes.",
-            "dandelion": "A type of edible weed with bitter leaves often used in salads.",
-            "eggplant": "A purple or black vegetable known for its meaty texture.",
-            "fennel": "A fragrant herb with a bulb-like base often used in Mediterranean cuisine.",
-            "garlic": "A pungent bulb often used as a flavoring in cooking.",
-            "hazelnut": "A type of nut often used in baking and as a spread like Nutella.",
-            "kiwifruit": "A small, green fruit with a fuzzy brown skin.",
-            "lime": "A small, green citrus fruit known for its tart flavor.",
-            "nectar": "A sweet liquid often collected by bees to make honey.",
-            "onion": "A pungent vegetable often used as a base for many savory dishes.",
-            "peach": "A sweet, juicy fruit with a fuzzy skin.",
-            "pineapple": "A tropical fruit with a spiky, rough exterior and sweet, yellow flesh.",
-            "plum": "A sweet and juicy fruit with a smooth skin.",
-            "quinoa": "A nutritious grain often used as a rice substitute.",
-            "radish": "A crunchy, pungent root vegetable often used in salads and garnishes.",
-            "starfruit": "A tropical fruit with a unique star-shaped cross-section when sliced.",
-            "tamarind": "A tangy fruit used in a variety of culinary applications.",
-            "uglifruit": "A citrus fruit with a wrinkled appearance, also known as ugli fruit.",
-            "watercress": "A leafy green vegetable with a peppery taste.",
-            "yellowfin tuna": "A type of tuna known for its yellow fin and delicious flavor.",
-            "zinfandel grapes": "Grapes often used to make Zinfandel wine.",
-            "acorn squash": "A type of winter squash with a distinctive acorn-like shape.",
-            "butternut squash": "A sweet and nutty-flavored winter squash.",
-            "cantaloupe": "A sweet, orange-fleshed melon often enjoyed in fruit salads.",
-            "daikon": "A long, white radish often used in Asian cuisine.",
-            "endive": "A leafy green vegetable with a slightly bitter taste often used in salads.",
-            "fava beans": "Large, flat beans often used in Mediterranean dishes.",
-            "guanabana": "A tropical fruit with a spiky green exterior and creamy white flesh.",
-            "honeydew melon": "A sweet and refreshing melon with pale green flesh.",
-            "jalapeno": "A type of chili pepper with a medium level of spiciness.",
-            "kale": "A leafy green vegetable known for its nutritional value.",
-            "leek": "A mild-flavored vegetable often used in soups and stews.",
-            "mung beans": "Small, green beans often used in Asian cooking.",
-            "napa cabbage": "A type of Chinese cabbage with crinkled leaves.",
-            "okra": "A green, pod-like vegetable often used in Southern cuisine.",
-            "pomegranate": "A fruit with juicy, red seeds often used in salads and juices.",
-            "quail eggs": "Tiny eggs from quail birds, often used in gourmet cuisine.",
-            "rhubarb": "A tart vegetable often used in desserts like pies and crisps.",
-            "spinach": "A leafy green vegetable known for its high iron content.",
-            "taro": "A starchy root vegetable used in various cuisines.",
-            "ugli fruit": "A citrus fruit with a wrinkled appearance, also known as ugli fruit.",
-            "vodka": "A clear alcoholic spirit often used in cocktails.",
-            "watercress": "A leafy green vegetable with a peppery taste.",
-            "ximenia": "A fruit-bearing tree with small, yellow fruits.",
-            "yams": "Starchy root vegetables often used in savory and sweet dishes.",
-            "zucchini": "A type of summer squash often used in savory dishes."
-        };
+    <div class="two">
+      <img src="OIP-fotor-bg-remover-2023110520566.png" alt="person" id="two" width="500px" height="300px">
+    </div>
+  </div>
 
-        const words = Object.keys(wordHints);
-        let wordToGuess = pickRandomWord(words);
-        let attemptsRemaining = 6;
-        const guessedLetters = [];
+  <div class="description">
+    <h3>About Me</h3>
+    <p>In 2022, my journey into the world of software development began as a student. I was initially inspired by my
+      school's curriculum and courses, which introduced me to a variety of programming languages, including HTML, CSS,
+      JavaScript, PHP, Python, C#, and C. As I delved deeper into coding and technology, I found my passion for learning
+      and growing in this field growing steadily.</p>
 
-        const wordDisplay = document.getElementById("word-display");
-        const wordLengthDisplay = document.getElementById("word-length-display");
-        const attemptsDisplay = document.getElementById("attempts-remaining");
-        const guessedLettersDisplay = document.getElementById("guessed-letters-display");
-        const hangmanImage = document.getElementById("hangman-image");
-        const gameOverMessage = document.getElementById("game-over");
-        const guessInput = document.getElementById("guess-input");
-        const guessButton = document.getElementById("guess-button");
-        const hintDisplay = document.getElementById("hint-display");
+    <p>My ambition is to become a full stack developer, adept at both front-end and back-end development. This
+      aspiration
+      drives me to continue honing my skills in the languages I've encountered and expanding my knowledge. I'm
+      particularly interested in web development and am exploring various frameworks and tools that will allow me to
+      excel in both domains.</p>
 
-        wordDisplay.textContent = displayWord(wordToGuess, guessedLetters);
-        wordLengthDisplay.textContent = wordToGuess.length;
-        attemptsDisplay.textContent = attemptsRemaining;
+    <p>During my educational journey, I've had the opportunity to apply my programming skills to various projects and
+      assignments. These experiences have been both rewarding and educational, helping me gain practical experience and
+      a deeper understanding of the software development process.</p>
 
-        hintDisplay.textContent = `Hint: ${wordHints[wordToGuess]}`;
+    <p>As I continue to learn, I'm also looking forward to the possibility of collaborating with other students and
+      developers on group projects, which can provide valuable insights and further enrich my skillset.</p>
 
-        guessButton.addEventListener("click", () => {
-            const guess = guessInput.value.toLowerCase();
-            if (guess.length !== 1 || !guess.match(/[a-z]/)) {
-                alert("Please enter a valid single letter.");
-                return;
-            }
+    <p>My dedication to balancing my studies with coding practice is a priority, and I've found effective time
+      management
+      and study techniques to help me in this regard. I've also benefited from a range of online courses and coding
+      tutorials that have been instrumental in my learning process.</p>
 
-            if (guessedLetters.includes(guess)) {
-                alert("You already guessed that letter.");
-                return;
-            }
+    <p>In summary, I'm a passionate student of software development who is excited to explore the ever-evolving world of
+      coding and technology. My goal is to become a skilled full stack developer, and my journey so far has been marked
+      by continuous learning and hands-on experience in various programming languages. I eagerly anticipate what the
+      future holds as I continue my quest to master the art of software development.</p>
+  </div>
 
-            guessedLetters.push(guess);
-            guessedLettersDisplay.textContent = guessedLetters.join(", ");
-            if (wordToGuess.indexOf(guess) === -1) {
-                attemptsRemaining--;
-                attemptsDisplay.textContent = attemptsRemaining;
-                updateHangmanImage(6 - attemptsRemaining);
-            }
+  <div class="timeline">
+    <div class="container left">
+      <div class="content">
+        <h2>August 2023</h2>
+        <p>Start Second Year Software Development</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>August 2022</h2>
+        <p>Start First Year Software Development Course with Zero Experience</p>
+      </div>
+    </div>
 
-            const wordDisplayText = displayWord(wordToGuess, guessedLetters);
-            wordDisplay.textContent = wordDisplayText;
 
-            if (wordDisplayText === wordToGuess) {
-                gameOverMessage.textContent = "Congratulations! You guessed the word.";
-                endGame();
-            } else if (attemptsRemaining === 0) {
-                gameOverMessage.textContent = "Sorry, you ran out of attempts. The word was: " + wordToGuess;
-                endGame();
-            }
-
-            guessInput.value = "";
-        });
-
-        function pickRandomWord(wordArray) {
-            return wordArray[Math.floor(Math.random() * wordArray.length)];
-        }
-
-        function displayWord(word, guessedLetters) {
-            let display = "";
-            for (let letter of word) {
-                display += guessedLetters.includes(letter) ? letter : " _ ";
-            }
-            return display;
-        }
-
-        function updateHangmanImage(incorrectGuesses) {
-            const hangmanImages = [
-                "  _________",
-                "  |",
-                `  ${incorrectGuesses < 6 ? "O" : " "}`,
-                `  ${incorrectGuesses < 5 ? "/" : " "}${incorrectGuesses < 4 ? "|" : " "}${incorrectGuesses < 3 ? "\\" : " "}`,
-                `  ${incorrectGuesses < 2 ? "/" : " "} ${incorrectGuesses < 1 ? "\\" : " "}`,
-            ];
-            hangmanImage.textContent = hangmanImages.join('\n');
-        }
-
-        const replayButton = document.getElementById("replay-button");
-
-        replayButton.addEventListener("click", () => {
-            wordToGuess = pickRandomWord(words);
-            attemptsRemaining = 6;
-            guessedLetters.length = 0;
-
-            wordDisplay.textContent = displayWord(wordToGuess, guessedLetters);
-            wordLengthDisplay.textContent = wordToGuess.length;
-            attemptsDisplay.textContent = attemptsRemaining;
-            guessedLettersDisplay.textContent = "";
-            hangmanImage.textContent = "";
-            gameOverMessage.textContent = "";
-            hintDisplay.textContent = `Hint: ${wordHints[wordToGuess]}`;
-
-            guessInput.removeAttribute("disabled");
-            guessButton.removeAttribute("disabled");
-            replayButton.style.display = "none";
-            guessInput.value = "";
-        });
-
-        function endGame() {
-            guessInput.setAttribute("disabled", true);
-            guessButton.setAttribute("disabled", true);
-            replayButton.style.display = "block";
-        }
-    </script>
+  </div>
 </body>
 
 </html>
