@@ -20,31 +20,25 @@
         <a class="active" href="certificates.html">Certificates</a>
     </div>
     <h2>Certificates and Awards</h2>
-    <p class="p1">Hold To View Certificate</p>
+    <p class="p1">Click To View Certificate, Certificate is shown here:</p>
     <div class="certificates-container">
+        <div id="certificate-image">
+            <img src="" alt="Certificate Image">
+        </div>
 
         <div class="certificate">
             <h3>Bit Academy Python Novice</h3>
             <p>Completed Bit-Academt Python Novice Course</p>
-            <div class="pdf-popup">
-                <iframe src=""></iframe>
-            </div>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="showCertificateImage('Certificates/Cisco Python 1.png')">
             <h3>Cisco Python Essentials</h3>
             <p>Completed Cisco Python Essentials 1 Course</p>
-            <div class="pdf-popup">
-                <iframe src="Certificates/Cisco Python 1.png"></iframe>
-            </div>
         </div>
-
-        <div class="certificate">
+        
+        <div class="certificate" onclick="showCertificateImage('Certificates/Cisco Introduction to Cybersecurity.png')">
             <h3>Cisco Introduction to Cybersecurity</h3>
             <p>Completed Cisco Introduction to Cybersecurity Course</p>
-            <div class="pdf-popup">
-                <iframe src="Certificates/Cisco Introduction to Cybersecurity.png"></iframe>
-            </div>
         </div>
 
         <div class="certificate">
@@ -62,12 +56,9 @@
             <p>Completed Bit-Academy C# OOP beginner Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="showCertificateImage('Certificates/Bit Academy PHP Beginner.png')">
             <h3>Bit Academy PHP Beginner</h3>
             <p>Completed Bit-Academy PHP beginner Course</p>
-            <div class="pdf-popup">
-                <iframe src="Certificates/Bit Academy PHP Beginner.png"></iframe>
-            </div>
         </div>
 
         <div class="certificate">
@@ -95,24 +86,26 @@
             <p>Completed Bit-Academy JavaSript Intro Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="showCertificateImage('Certificates/Bit Academy Command Line.png')">
             <h3>Bit Academy Command Line Beginner</h3>
             <p>Completed Bit-Academy Command Line Beginner Course</p>
-            <div class="pdf-popup">
-                <iframe src="Certificates/Bit Academy Command Line.png"></iframe>
-            </div>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="showCertificateImage('Certificates/Bit Academy HTML_CSS Beginner.png')">
             <h3>Bit Academy HTML/CSS Beginner</h3>
             <p>Completed Bit-Academy HTML/CSS Beginner Course</p>
-            <div class="pdf-popup">
-                <iframe src="Certificates/Bit Academy HTML_CSS Beginner.png"></iframe>
-            </div>
         </div>
 
         <!-- Add more certificates and awards as needed -->
     </div>
+<script>
+    function showCertificateImage(imageSrc) {
+        const certificateImage = document.getElementById("certificate-image");
+        const imageElement = certificateImage.querySelector("img");
+        imageElement.src = imageSrc;
+        certificateImage.style.display = "block";
+    }
+</script>
 </body>
 
 </html>
