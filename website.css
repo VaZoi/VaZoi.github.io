@@ -185,6 +185,7 @@ p {
         .two img {
           z-index: -1;
         }
+
     .nav>img {
       width: 60px;
       height: 64px;
@@ -217,6 +218,9 @@ p {
 .description {
   width: 100%;
   left: 10%;
+}
+.svg {
+  z-index: 1;
 }
 }
 
