@@ -27,22 +27,6 @@ body {
   color: #0579e6;
 }
 
-@media (max-width: 768px) {
-  .nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav a {
-    margin: 10px 0;
-    font-size: 120%;
-  }
-
-  .nav>img {
-    width: 60px;
-    height: 64px;
-  }
-}
 .all {
   display: flex;
   flex-direction: row;
@@ -185,6 +169,20 @@ p {
 
 @media screen and (max-width: 768px) {
 
+  .nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .nav a {
+      margin: 10px 0;
+      font-size: 120%;
+    }
+  
+    .nav>img {
+      width: 60px;
+      height: 64px;
+    }
   .timeline::after {
     left: 31px;
   }
@@ -210,6 +208,10 @@ p {
   .right {
     left: 0%;
   }
+.description {
+  width: 100%;
+  left: 10%;
+}
 }
 
 .description {
@@ -235,10 +237,4 @@ p {
   line-height: 1.5;
   margin: 10px 0;
   color: #666;
-}
-@media screen and (max-width: 768px) {
-  .description {
-    width: 100%;
-    left: 10%;
-  }
 }
