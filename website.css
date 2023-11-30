@@ -181,7 +181,10 @@ p {
       margin: 10px 0;
       font-size: 120%;
     }
-  
+
+        .two img {
+          z-index: -1;
+        }
     .nav>img {
       width: 60px;
       height: 64px;
