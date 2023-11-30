@@ -183,7 +183,7 @@ p {
   border-radius: 6px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
 
   .timeline::after {
     left: 31px;
@@ -236,7 +236,7 @@ p {
   margin: 10px 0;
   color: #666;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .description {
     width: 100%;
     left: 10%;
