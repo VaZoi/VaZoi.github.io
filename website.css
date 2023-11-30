@@ -182,11 +182,6 @@ p {
       font-size: 120%;
     }
 
-        .two img {
-          z-index: 1;
-            color: #0579e6;
-        }
-
     .nav>img {
       width: 60px;
       height: 64px;
@@ -218,10 +213,13 @@ p {
   }
 .description {
   width: 100%;
-  left: 10%;
+  left: 1%;
 }
 .svg {
   z-index: -1;
+}
+.two img {
+  visibility: collapse;
 }
 }
 
