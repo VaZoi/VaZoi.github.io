@@ -170,6 +170,7 @@ p {
 
   .all {
       width: 100%;
+      
     
   .nav {
       flex-direction: column;
@@ -184,6 +185,7 @@ p {
     .nav>img {
       width: 60px;
       height: 64px;
+      }
     
   .timeline::after {
     left: 31px;
@@ -246,4 +248,5 @@ p {
   line-height: 1.5;
   margin: 10px 0;
   color: #666;
+}
 }
