@@ -212,8 +212,8 @@ p {
     left: 0%;
   }
 .description {
-  width: 100%;
-  left: 1%;
+  width: 600px;
+    left: 20px;
 }
 .svg {
   z-index: -1;
