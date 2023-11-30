@@ -183,7 +183,8 @@ p {
     }
 
         .two img {
-          z-index: -1;
+          z-index: 1;
+            color: #0579e6;
         }
 
     .nav>img {
@@ -220,7 +221,7 @@ p {
   left: 10%;
 }
 .svg {
-  z-index: 1;
+  z-index: -1;
 }
 }
 
