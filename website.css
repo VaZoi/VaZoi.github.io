@@ -1,21 +1,20 @@
 body {
   background-color: black;
   font-family: Helvetica, sans-serif;
+  margin: 0;
 }
 
 .nav {
   display: flex;
   justify-content: space-evenly;
-  text-decoration: none;
-  width: 100%;
   align-items: center;
+  width: 100%;
+    color: white;
 }
 
 .nav a {
-  justify-content: center;
-  color: white;
+  font-size: 1.5em;
   text-decoration: none;
-  font-size: 150%;
 }
 
 .nav>img {
@@ -29,7 +28,6 @@ body {
 
 .all {
   display: flex;
-  flex-direction: row;
   padding-top: 8%;
   flex-wrap: wrap;
 }
@@ -49,20 +47,16 @@ body {
 
 h1 {
   color: #0579e6;
-  font-size: 400%;
+  font-size: 4em;
 }
 
 h2 {
-  font-size: 300%;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  animation-iteration-count: 1;
-  animation-name: slideInLeft;
+  font-size: 3em;
+    animation: slideInLeft 2s ease-in-out 0s 1;
 }
 
 p {
-  font-size: 150%;
+  font-size: 1.5em;
 }
 
 .svg {
@@ -87,8 +81,7 @@ p {
 .timeline {
   position: relative;
   max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 150px;
+  margin: 150px auto 0;
 }
 
 .timeline::after {
@@ -122,27 +115,12 @@ p {
   z-index: 1;
 }
 
-.left {
+.left,
+.right {
   left: 0;
 }
 
-.right {
-  left: 50%;
-}
-
-.left::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  right: 30px;
-  border: medium solid #0579e6;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #0579e6;
-}
-
+.left::before,
 .right::before {
   content: " ";
   height: 0;
@@ -150,6 +128,16 @@ p {
   top: 22px;
   width: 0;
   z-index: 1;
+}
+
+.left::before {
+  right: 30px;
+  border: medium solid #0579e6;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #0579e6;
+}
+
+.right::before {
   left: 30px;
   border: medium solid #0579e6;
   border-width: 10px 10px 10px 0;
@@ -168,15 +156,15 @@ p {
 }
 
 @media screen and (max-width: 768px) {
-
   .all {
-      width: 100%;
+    width: 100%;
     }
+
   .nav {
-      flex-direction: column;
+    flex-direction: column;
       align-items: center;
     }
-  
+    
     .nav a {
       margin: 10px 0;
       font-size: 120%;
@@ -186,6 +174,7 @@ p {
       width: 60px;
       height: 64px;
     }
+
   .timeline::after {
     left: 31px;
   }
@@ -203,24 +192,28 @@ p {
     border-color: transparent white transparent transparent;
   }
 
-  .left::after,
-  .right::after {
+        .left::after,
+        .right::after {
     left: 15px;
   }
 
   .right {
     left: 0%;
   }
-.description {
-  width: 600px;
+
+        .description {
+          width: 600px;
     left: 20px;
-}
-.svg {
-  z-index: -1;
-}
-.two img {
-  visibility: collapse;
-}
+    }
+    
+    
+    .svg {
+      z-index: -1;
+    }
+
+        .two img {
+          visibility: collapse;
+        }
 }
 
 .description {
