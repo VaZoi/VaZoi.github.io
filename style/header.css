@@ -1,0 +1,23 @@
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+      width: 100%;
+    align-items: center;
+  }
+  
+  .nav a {
+    justify-content: center;
+      color: white;
+    text-decoration: none;
+    font-size: 150%;
+  }
+  
+  .nav>img {
+    width: 85px;
+    height: 90px;
+  }
+  
+  .nav .active {
+    color: #0579e6;
+  }

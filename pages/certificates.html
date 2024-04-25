@@ -4,108 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="icon.jpeg">
+    <link rel="icon" href="../images/icon.jpeg">
     <title>Certificates and Awards</title>
-    <link rel="stylesheet" href="certificates.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/certificates.css">
+    <script src="../javaScript/header.js" defer></script>
+    <script src="../javaScript/certificates.js" defer></script>
 </head>
 
 <body>
-    <div class="nav">
-        <img src="icon.jpeg" alt="Logo" id="Logo">
-        <a href="index.html">Home</a>
-        <a href="cv.html">CV</a>
-        <a href="skills.html">Skills</a>
-        <a href="Games.html">Games</a>
-        <a href="Projects.html">Projects</a>
-        <a class="active" href="certificates.html">Certificates</a>
-    </div>
+    <nav id="nav" class="nav"></nav>
     <h2>Certificates and Awards</h2>
     <p class="p1">Click To View Certificate, Certificate is shown here:</p>
     <div class="certificates-container">
-        <div id="certificate-image">
-            <img src="" alt="Certificate Image">
+        <div id="pdf-container" style="display: none;">
+            <iframe id="pdf-iframe" src="" width="600px" height="600px"></iframe>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/Python Novice.pdf')">
             <h3>Bit Academy Python Novice</h3>
             <p>Completed Bit-Academt Python Novice Course</p>
         </div>
 
-        <div class="certificate" onclick="showCertificateImage('Certificates/Cisco Python 1.png')">
+        <div class="certificate" onclick="embedPDF('../Certificates/Python_Essentials_1_Badge20231020-45-21sr88.pdf')">
             <h3>Cisco Python Essentials</h3>
             <p>Completed Cisco Python Essentials 1 Course</p>
         </div>
         
-        <div class="certificate" onclick="showCertificateImage('Certificates/Cisco Introduction to Cybersecurity.png')">
+        <div class="certificate" onclick="embedPDF('../Certificates/Introduction_to_Cybersecurity_Badge20231022-29-7xf65q.pdf')">
             <h3>Cisco Introduction to Cybersecurity</h3>
             <p>Completed Cisco Introduction to Cybersecurity Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/CSharp Beginner.pdf')">
             <h3>Bit Academy C# Beginner</h3>
             <p>Completed Bit-Academy C# beginner Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/CSharp Novice.pdf')">
             <h3>Bit Academy C# Novice</h3>
             <p>Completed Bit-Academy C# Novice Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/CSharp OOP Beginner.pdf')">
             <h3>Bit Academy C# OOP Beginner</h3>
             <p>Completed Bit-Academy C# OOP beginner Course</p>
         </div>
 
-        <div class="certificate" onclick="showCertificateImage('Certificates/Bit Academy PHP Beginner.png')">
+        <div class="certificate" onclick="embedPDF('../Certificates/PHP Beginner (1).pdf')">
             <h3>Bit Academy PHP Beginner</h3>
             <p>Completed Bit-Academy PHP beginner Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/PHP Novice.pdf')">
             <h3>Bit Academy PHP Novice</h3>
             <p>Completed Bit-Academy PHP Novice Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/PHP Web.pdf')">
             <h3>Bit Academy PHP Web</h3>
             <p>Completed Bit-Academy PHP Web Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/MySQL Beginner.pdf')">
             <h3>Bit Academy DataBase Beginner</h3>
             <p>Completed Bit-Academy Database Beginner Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/Database PDO.pdf')">
             <h3>Bit Academy DataBase PDO</h3>
             <p>Completed Bit-Academy Database PDO Course</p>
         </div>
 
-        <div class="certificate">
+        <div class="certificate" onclick="embedPDF('../Certificates/JavaScript Introductie.pdf')">
             <h3>Bit Academy JavaScript Intro</h3>
             <p>Completed Bit-Academy JavaSript Intro Course</p>
         </div>
 
-        <div class="certificate" onclick="showCertificateImage('Certificates/Bit Academy Command Line.png')">
+        <div class="certificate" onclick="embedPDF('../Certificates/Command line (1).pdf')">
             <h3>Bit Academy Command Line Beginner</h3>
             <p>Completed Bit-Academy Command Line Beginner Course</p>
         </div>
 
-        <div class="certificate" onclick="showCertificateImage('Certificates/Bit Academy HTML_CSS Beginner.png')">
+        <div class="certificate" onclick="embedPDF('../Certificates/HTML_CSS Beginner (2).pdf')">
             <h3>Bit Academy HTML/CSS Beginner</h3>
             <p>Completed Bit-Academy HTML/CSS Beginner Course</p>
         </div>
 
         <!-- Add more certificates and awards as needed -->
     </div>
-<script>
-    function showCertificateImage(imageSrc) {
-        const certificateImage = document.getElementById("certificate-image");
-        const imageElement = certificateImage.querySelector("img");
-        imageElement.src = imageSrc;
-        certificateImage.style.display = "block";
-    }
-</script>
 </body>
 
 </html>
